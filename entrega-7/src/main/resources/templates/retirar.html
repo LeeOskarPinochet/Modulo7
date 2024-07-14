@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="card m-3 p-3" style="width: 18rem;">
+    <p>Ingrese monto a retirar</p>
+    <p th:text="${usuario.nombre}"></p>
+    <div class="d-flex">
+
+        <p>Su saldo es: $</p>
+        <p th:text="${usuario.saldo}"></p>
+
+    </div>
+
+    <form th:action="@{/movimiento/retirarMonto}" th:object="${deposito}" method="post">
+        <input type="hidden" name="usuarioId" th:value="${usuario.usuarioId}"/>
+        <input type="number" name="monto" placeholder="Monto a depositar" class="form-control">
+        <select class="form-select" aria-label="Default select example" name="medio">
+            <option selected>Seleccione medio de retiro</option>
+            <option value="1">Efectivo</option>
+            <option value="2">Cheque</option>
+            <option value="3">Vale Vista</option>
+        </select>
+        <input type="submit" value="Retirar" class="btn btn-primary">
+    </form>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+</html>
